@@ -22,13 +22,14 @@ class TransactionList extends StatelessWidget {
                     vertical: 20.0,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 3.0),
+                    border: Border.all(color: Theme.of(context).primaryColorDark, width: 3.0),
                   ),
                   padding: EdgeInsets.all(10.0),
                   child: Text(
                     "₹" + transactions[index].amount.toStringAsFixed(2),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'Open Sans',
                         fontSize: 20,
                         color: Colors.purple),
                   ),
