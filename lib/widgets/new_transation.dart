@@ -6,6 +6,17 @@ class NewTrasaction extends StatelessWidget {
   final Function addTx;
 
   NewTrasaction(this.addTx);
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+    addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +29,20 @@ class NewTrasaction extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: "Title"),
               controller: titleController,
+              onSubmitted: (_) => submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: "Amount"),
               controller: amountController,
               keyboardType: TextInputType.number,
+              onSubmitted: (_) => submitData(),
             ),
             FlatButton(
               child: Text("New"),
-              onPressed: () {
-                addTx(
-                  titleController.text,
-                  double.parse(
-                    amountController.text,
-                  ),
-                );
-              },
-            ) //Have to customize cursor later
+              onPressed: submitData,
+            ),
+
+            //Have to customize cursor later
           ],
         ),
       ),
