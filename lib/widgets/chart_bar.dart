@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './card.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -12,9 +11,13 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        FittedBox(
-                  child: Text(
-            "₹" + spendingAmount.toStringAsFixed(0), style: TextStyle(fontFamily: 'Open Sans'),
+        Container(
+          height: 15,
+          child: FittedBox(
+            child: Text(
+              "₹" + spendingAmount.toStringAsFixed(0),
+              style: TextStyle(fontFamily: 'Open Sans', fontWeight: FontWeight.bold,color: Colors.white),
+            ),
           ),
         ),
         SizedBox(
@@ -22,22 +25,22 @@ class ChartBar extends StatelessWidget {
         ),
         Container(
           height: 120.0,
-          width: 35.0,
+          width: 23.5,
           child: Stack(
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 5.0),
-                  color: Color.fromRGBO(220, 220, 220, 50),
-                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey, width: 2.0),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
               FractionallySizedBox(
                 heightFactor: spendigPercnt,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.teal,
-                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromRGBO(0, 100, 100, 1),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -47,7 +50,10 @@ class ChartBar extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        Text("Days", style: TextStyle(fontFamily: 'Open Sans'),),
+        Text(
+          label,
+          style: TextStyle(fontFamily: 'Open Sans', color: Colors.white),
+        ),
       ],
     );
   }

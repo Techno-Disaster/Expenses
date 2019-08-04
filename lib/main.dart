@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Expenses",
-      theme: ThemeData(primarySwatch: Colors.red, fontFamily: 'Quicksand'),
+      theme: ThemeData(fontFamily: 'Quicksand', primaryColor: Color.fromRGBO(38, 38, 38, 1)),
+    
       home: MyHomePage(),
     );
   }
@@ -53,11 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
     ).toList();
   }
 
-  void _addNewTransaction(String txtitle, double txamount) {
+  void _addNewTransaction(
+      String txtitle, double txamount, DateTime chosenDate) {
     final newTx = Transaction(
       title: txtitle,
       amount: txamount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
     );
     setState(() {
@@ -65,9 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
+      backgroundColor: Colors.black,
         context: ctx,
+        elevation: 30,
         builder: (_) {
           return NewTrasaction(_addNewTransaction);
         });
@@ -76,7 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(38, 38, 38, 100),
       appBar: AppBar(
+        
+        centerTitle: true,
+        backgroundColor:Color.fromRGBO(38, 38, 38, 100),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -96,16 +112,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransactions)
+            TransactionList(_userTransactions, _deleteTransaction)
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        
+      
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTransaction(context),
         elevation: 20,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

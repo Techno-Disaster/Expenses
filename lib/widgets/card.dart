@@ -3,7 +3,6 @@ import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 import './chart_bar.dart';
 
-
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
   Chart(this.recentTransactions);
@@ -23,11 +22,11 @@ class Chart extends StatelessWidget {
           }
         }
         return {
-          'day': DateFormat.E().format(weekDay).substring(0, 1),
+          'day': DateFormat.E().format(weekDay).substring(0, 2),
           'amount': totalSum,
         };
       },
-    );
+    ).reversed.toList();
   }
 
   double get totalSpending {
@@ -42,23 +41,26 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 12.0,
+      color: Color.fromRGBO(38, 38, 38, 100),
+      elevation: 9.0,
       margin: EdgeInsets.all(9.0),
       child: Container(
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupedTransctions.map((data) {
-            return Flexible(
-              fit: FlexFit.tight,
-              child: ChartBar(
-                  data['day'],
-                  data['amount'],
-                  totalSpending == 0.0
-                      ? 0.0
-                      : (data['amount'] as double) / totalSpending),
-            );
-          }).toList(),
+          children: groupedTransctions.map(
+            (data) {
+              return Flexible(
+                fit: FlexFit.tight,
+                child: ChartBar(
+                    data['day'],
+                    data['amount'],
+                    totalSpending == 0.0
+                        ? 0.0
+                        : (data['amount'] as double) / totalSpending),
+              );
+            },
+          ).toList(),
         ),
       ),
     );
