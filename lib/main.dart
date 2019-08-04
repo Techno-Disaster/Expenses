@@ -1,21 +1,26 @@
-import 'package:expenses/widgets/transaction_list.dart';
-
-import './widgets/new_transation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
 import './widgets/card.dart';
+import './widgets/new_transation.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Color.fromRGBO(38, 38, 38, 1),
+      ),
+    );
     return MaterialApp(
       title: "Expenses",
-      theme: ThemeData(fontFamily: 'Quicksand', primaryColor: Color.fromRGBO(38, 38, 38, 1)),
-    
+      theme: ThemeData(
+        fontFamily: 'Quicksand',
+      ),
       home: MyHomePage(),
     );
   }
@@ -77,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
-      backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
         context: ctx,
         elevation: 30,
         builder: (_) {
@@ -90,9 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(38, 38, 38, 100),
       appBar: AppBar(
-        
         centerTitle: true,
-        backgroundColor:Color.fromRGBO(38, 38, 38, 100),
+        backgroundColor: Color.fromRGBO(38, 38, 38, 100),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -117,8 +121,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        
-      
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTransaction(context),
         elevation: 20,
