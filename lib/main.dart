@@ -6,17 +6,21 @@ import './widgets/transaction_list.dart';
 import './widgets/card.dart';
 import './widgets/new_transation.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      MyApp(),
+    );
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: Color.fromRGBO(38, 38, 38, 1),
+        statusBarColor: Color.fromRGBO(15, 17, 26, 1.0),
       ),
     );
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
       title: "Expenses",
       theme: ThemeData(
         fontFamily: 'Quicksand',
@@ -34,18 +38,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [];
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: "t1",
-    //   title: "Shoes",
-    //   amount: 6000.00,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: "t1",
-    //   title: "SODIMM",
-    //   amount: 1299.00,
-    //   date: DateTime.now(),
-    // ),
   ];
   List<Transaction> get _recentTransactions {
     return _userTransactions.where(
@@ -93,10 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(38, 38, 38, 100),
+      backgroundColor: Color.fromRGBO(15, 17, 26, 1.0),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(38, 38, 38, 100),
+        backgroundColor: Color.fromRGBO(15, 17, 26, 1.0),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -121,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTransaction(context),
         elevation: 20,

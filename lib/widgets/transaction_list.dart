@@ -18,10 +18,9 @@ class TransactionList extends StatelessWidget {
                 Text(
                   "No transactions added yet!",
                   style: TextStyle(
-                    fontFamily: 'Qpen Sans',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
-                  ),
+                      fontFamily: 'Qpen Sans',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 SizedBox(
                   height: 20.0,
@@ -44,6 +43,8 @@ class TransactionList extends StatelessWidget {
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 30,
+                      backgroundColor: Color.fromRGBO(76, 164, 225, 1.0),
+                      foregroundColor: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(6.0),
                         child: FittedBox(
@@ -60,8 +61,10 @@ class TransactionList extends StatelessWidget {
                     ),
                     title: Text(
                       transactions[index].title,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                     subtitle: Text(
                       DateFormat("dd MMMM").format(transactions[index].date),

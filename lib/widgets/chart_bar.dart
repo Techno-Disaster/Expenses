@@ -16,7 +16,10 @@ class ChartBar extends StatelessWidget {
           child: FittedBox(
             child: Text(
               "₹" + spendingAmount.toStringAsFixed(0),
-              style: TextStyle(fontFamily: 'Open Sans', fontWeight: FontWeight.bold,color: Colors.white),
+              style: TextStyle(
+                  fontFamily: 'Open Sans',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
         ),
@@ -39,10 +42,11 @@ class ChartBar extends StatelessWidget {
                 heightFactor: spendigPercnt,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(0, 100, 100, 1),
+                    color: Color.fromRGBO(59, 73, 98, 1.0),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
+                alignment: FractionalOffset.bottomCenter,
               ),
             ],
           ),
