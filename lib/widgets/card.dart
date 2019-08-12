@@ -40,27 +40,29 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Color.fromRGBO(38, 38, 38, 100),
-      elevation: 9.0,
-      margin: EdgeInsets.all(9.0),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupedTransctions.map(
-            (data) {
-              return Flexible(
-                fit: FlexFit.tight,
-                child: ChartBar(
-                    data['day'],
-                    data['amount'],
-                    totalSpending == 0.0
-                        ? 0.0
-                        : (data['amount'] as double) / totalSpending),
-              );
-            },
-          ).toList(),
+    return Container(
+      child: Card(
+        color: Color.fromRGBO(22, 25, 37, 1.0),
+        elevation: 9.0,
+        margin: EdgeInsets.all(9.0),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: groupedTransctions.map(
+              (data) {
+                return Flexible(
+                  fit: FlexFit.tight,
+                  child: ChartBar(
+                      data['day'],
+                      data['amount'],
+                      totalSpending == 0.0
+                          ? 0.0
+                          : (data['amount'] as double) / totalSpending),
+                );
+              },
+            ).toList(),
+          ),
         ),
       ),
     );

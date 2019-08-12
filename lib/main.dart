@@ -6,21 +6,28 @@ import './widgets/transaction_list.dart';
 import './widgets/card.dart';
 import './widgets/new_transation.dart';
 
-void main() => runApp(
-      MyApp(),
-    );
+void main() {
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: Color.fromRGBO(15, 17, 26, 1.0),
+        statusBarColor: Color.fromRGBO(12, 14, 21, 1.0),
       ),
     );
     return MaterialApp(
-       debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: "Expenses",
       theme: ThemeData(
         fontFamily: 'Quicksand',
@@ -37,8 +44,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [];
-  final List<Transaction> _userTransactions = [
-  ];
+  final List<Transaction> _userTransactions = [];
   List<Transaction> get _recentTransactions {
     return _userTransactions.where(
       (tx) {
@@ -84,36 +90,47 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(15, 17, 26, 1.0),
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(15, 17, 26, 1.0),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              size: 30,
-            ),
-            onPressed: () => _startAddNewTransaction(context),
-          )
-        ],
-        title: Text(
-          "My Expenses",
-          style:
-              TextStyle(fontFamily: 'Open Sans', fontWeight: FontWeight.bold),
-        ),
+    final appBar = AppBar(
+      centerTitle: true,
+      backgroundColor: Color.fromRGBO(12, 14, 21, 1.0),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.add,
+            size: 30,
+          ),
+          onPressed: () => _startAddNewTransaction(context),
+        )
+      ],
+      title: Text(
+        "My Expenses",
+        style: TextStyle(fontFamily: 'Open Sans', fontWeight: FontWeight.bold),
       ),
+    );
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(12, 14, 21, 1.0),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction)
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.32,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.68,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        
         child: Icon(Icons.add),
         onPressed: () => _startAddNewTransaction(context),
         elevation: 20,
