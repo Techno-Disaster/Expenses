@@ -1,16 +1,3 @@
-# expenses
+If you mostly have your money situation under control but want better charts and graphs for your finances, Expenses is the best option. Expenses is a free personal finance dashboard is available for anyone and is packed with features.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Specific to expenses, Expenses automatically tracks and categorizes every expense you make. From there, the app creates charts showing your monthly cash flow with an ability to break down expenses by category and dig in deeper where you see concerning spending habits. It isn’t great for budgeting, but is powerful for tracking your finances overall, particularly your investments.
